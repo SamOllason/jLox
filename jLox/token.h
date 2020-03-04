@@ -17,23 +17,21 @@ using namespace std;
 
 class Token {
 public:
-    Token(TokenType type, string lexeme, string literal, int line) {
+    // todo: change literal to a Literal object?
+    Token(TokenType type, string lexeme, string literal, bool isNumeric, int line) {
     // constructor
-        this->type_ = type;
-        this->lexeme_ = lexeme;
-        this->literal_ = literal;
-        this->line_ = line;
+        type_ = type;
+        lexeme_ = lexeme;
+        literal_ = literal;
+        isNumeric_ = isNumeric;
+        line_ = line;
    };
 
-    string toString() {
-        return type_ + " " + lexeme_ + " " + literal_;
-    }
-
 private:
-
     TokenType type_;
     string lexeme_;
     string literal_;
+    bool isNumeric_;
     int line_;
 };
 

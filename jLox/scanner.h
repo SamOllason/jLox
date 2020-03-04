@@ -8,7 +8,6 @@
 
 #ifndef scanner_h
 #define scanner_h
-//#include <stdlib.h>
 #include <vector>
 #include <string>
 #include "token.h"
@@ -22,16 +21,16 @@ public:
         this->source_ = source;
     }
     
-    vector<Token> scanTokens();
+    vector<Token*> scanTokens();
     
     void scanToken();
     
-    
-    bool isAtEnd() { return current_ != 9999; };
+    // TODO: include real number in here
+    bool isAtEnd() { return current_ != source_.length(); };
     
 private:
     string source_;
-    vector<Token> tokens_;
+    vector<Token*> tokens_;
     
     int start_ = 0; // position of first character in current lexeme
     int current_ = 0;
@@ -39,9 +38,13 @@ private:
     
     char advance();
     void addToken(TokenType type);
-    void addToken(TokenType type, string literal);
+    void addToken(TokenType type, string literal, bool isNumeric);
     bool match(char expected);
     char peek();
+    char peekNext();
+    void handleString();
+    bool isDigit(char c);
+    void handleNumber();
 };
 
 #endif /* scanner_h */
