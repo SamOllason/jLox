@@ -53,6 +53,10 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "&quot;fileTest1.txt&quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = ""
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

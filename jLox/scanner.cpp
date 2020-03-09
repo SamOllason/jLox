@@ -143,7 +143,7 @@ void Scanner::handleString() {
     advance();
     
     bool isNumeric = false;
-    addToken(STRING, source_.substr(start_ + 1, current_ - 1), isNumeric);
+    addToken(STRING, source_.substr(start_, current_ - 1), isNumeric);
 }
 
 bool Scanner::isDigit(char c) {

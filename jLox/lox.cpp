@@ -10,6 +10,8 @@
 #include <iostream>
 #include <fstream>
 #include "lox.h"
+#include "scanner.h"
+#include "token.h"
 
 using namespace std;
 
@@ -33,22 +35,23 @@ void Lox::runFile(string path) {
 }
     
 void Lox::runPrompt() {
-    
-    for(;;){
-        cout << "> " << endl;
-//            run(reader.readLine());
-    }
+    cout << "> " << endl;
 
+    for(;;){
+        string line;
+        cin >> line;
+        run(line);
+    }
 }
 
-void run(string source) {
-//    Scanner scanner = new Scanner(source);
-//    vector<Token> tokens = scanner.scanTokens();
-//
-//    // For now, just print the tokens.
-//    for(auto t: tokens) {
-//        cout << t << endl;
-//    }
+void Lox::run(string source) {
+    Scanner* scanner = new Scanner(source);
+    vector<Token*> tokens = scanner->scanTokens();
+
+    // For now, just print the tokens.
+    for(auto t: tokens) {
+        cout << t->toString() << endl;
+    }
 }
 
 void Lox::error(int line, string message) {
@@ -56,6 +59,6 @@ void Lox::error(int line, string message) {
 }
 
 void Lox::report(int line, string where, string message) {
-    cout << "[line " + std::to_string(line) + "] Error" + where + ": " + message;
+    cout << "[line " + to_string(line) + "] Error" + where + ": " + message;
     hadError_ =  true;
 }

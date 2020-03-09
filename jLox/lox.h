@@ -19,6 +19,7 @@ public:
     
     void runFile(string path);
     void runPrompt();
+    void run(string line);
     void error(int line, string message);
     void report(int line, string where, string message);
     

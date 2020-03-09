@@ -26,6 +26,10 @@ public:
         isNumeric_ = isNumeric;
         line_ = line;
    };
+    
+    string toString() {
+        return lexeme_ + "on line: " + to_string(line_);
+    };
 
 private:
     TokenType type_;

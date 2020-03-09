@@ -30,7 +30,8 @@ int main(int argc, const char* argv[]) {
         
 //      runFile(args[0]);
     } else {
-//      runPrompt();
+        Lox* lox = new Lox();
+        lox->runPrompt();
     }
     
     return 0;
