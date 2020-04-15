@@ -41,7 +41,7 @@ void Scanner::scanToken()
         case ';': addToken(SEMICOLON); break;
         case '*': addToken(STAR); break;
             
-            // two character lexemes
+        // two character lexemes
         case '!': addToken(match('=') ? BANG_EQUAL : BANG); break;
         case '=': addToken(match('=') ? EQUAL_EQUAL : EQUAL); break;
         case '<': addToken(match('=') ? LESS_EQUAL : LESS); break;
@@ -57,13 +57,13 @@ void Scanner::scanToken()
             }
         }
             
-            // ignore whitespace - start off new lexeme after whitespace char
+        // ignore whitespace - start off new lexeme after whitespace char
         case ' ':
-        case '\r':
-        case '\t':
-            // Ignore whitespace.
             break;
-            
+        case '\r':
+            break;
+        case '\t':
+            break;
         case '\n':
             line_++;
             break;
@@ -74,11 +74,11 @@ void Scanner::scanToken()
             if(isDigit(c)){
                 handleNumber();
             } else if(isAlpha(c)) {
-                
+                identifier();
             }
             else {
                 Lox* lox = new Lox();
-                // notice how we report error but keep scanning!
+                // notice how we report error but keep scanning
                 lox->error(line_, "Unexpected character.");
             }
     }
@@ -113,7 +113,7 @@ bool Scanner::match(char expected) {
 }
 
 char Scanner::peek() {
-    // lookahead a single character. Return the next character,
+    // lookahead a single character and return the next character,
     // unless at the end of a line
     if (isAtEnd()) return '\0';
     return source_.at(current_);
@@ -139,22 +139,24 @@ void Scanner::handleString() {
         lox->error(line_, "Unterminated string");
     }
     
-    // consume the closing '"'
+    // consume the closing '"' to make it a part of the string lexeme
     advance();
     
     bool isNumeric = false;
     addToken(STRING, source_.substr(start_, current_ - 1), isNumeric);
 }
 
-bool Scanner::isDigit(char c) {
-    return (int)c >= 0 && (int)c <= 9;
+bool Scanner::isDigit(char c) {   
+    return c >= '0' && c <= '9';
 }
 
 void Scanner::identifier() {
-    while(isAlphaNumeric(peek())) advance();
+    while(isAlphaNumeric(peek())){
+        advance();
+    }
     
     // See if the identifier is a reserved word.
-    string text    = source_.substr(start_, current_);
+    string text = source_.substr(start_, current_);
     
     TokenType type = keywords_.find(text) == keywords_.end() ? IDENTIFIER : keywords_.at(text);
     

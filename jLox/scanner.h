@@ -44,7 +44,10 @@ public:
     void scanToken();
     
     // TODO: include real number in here
-    bool isAtEnd() { return current_ >= source_.length(); };
+    bool isAtEnd() {
+        int s =  source_.length();
+        return current_ >= source_.length();
+    };
     
 private:
     string source_;

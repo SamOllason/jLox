@@ -28,7 +28,7 @@ public:
    };
     
     string toString() {
-        return lexeme_ + "on line: " + to_string(line_);
+        return lexeme_ + " on line: " + to_string(line_);
     };
 
 private:

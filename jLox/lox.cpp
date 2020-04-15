@@ -35,11 +35,12 @@ void Lox::runFile(string path) {
 }
     
 void Lox::runPrompt() {
-    cout << "> " << endl;
+    cout << "> ";
 
     for(;;){
         string line;
-        cin >> line;
+//        cin >> line;
+        getline(cin, line);
         run(line);
     }
 }
