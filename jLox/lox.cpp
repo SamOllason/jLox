@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <filesystem>
 #include <fstream>
 #include "lox.h"
 #include "scanner.h"
@@ -16,22 +17,26 @@
 using namespace std;
 
 void Lox::runFile(string path) {
-    cout << "run file " + path << endl;
-    ifstream myfile (path);
-    
-    // opening file
-    
-    if (myfile.is_open())
-    {
-//          while (getline (myfile,line))
-//          {
-//            cout << line << '\n';
-//          }
-      myfile.close();
-    }
+    string line;
+    ifstream loxScript;
+    loxScript.open(path);
 
-    else cout << "Unable to open file";
-//        run(myFile);
+    if (loxScript.is_open())
+    {
+//      while (getline (loxScript,line))
+//      {
+//        cout << line << '\n';
+//      }
+        
+        // use an iterator to read entire contents of file
+        std::string content((std::istreambuf_iterator<char>(loxScript))
+                            ,(std::istreambuf_iterator<char>()));
+        
+        run(content);
+        loxScript.close();
+    } else {
+        cout << "Unable to open file";
+    }
 }
     
 void Lox::runPrompt() {
@@ -39,7 +44,6 @@ void Lox::runPrompt() {
 
     for(;;){
         string line;
-//        cin >> line;
         getline(cin, line);
         run(line);
     }

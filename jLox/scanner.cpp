@@ -99,7 +99,7 @@ void Scanner::addToken(TokenType type) {
 }
 
 void Scanner::addToken(TokenType type, string literal, bool isNumeric) {
-    string text = source_.substr(start_, current_);
+    string text = source_.substr(start_, current_ - start_);
     Token* t = new Token(type, text, literal, isNumeric, line_);
     tokens_.push_back(t);
 }
@@ -116,12 +116,14 @@ char Scanner::peek() {
     // lookahead a single character and return the next character,
     // unless at the end of a line
     if (isAtEnd()) return '\0';
+    auto p = source_.at(current_);
     return source_.at(current_);
 }
 
 char Scanner::peekNext() {
     // return character after next character
     if (current_ + 1 >= source_.length()) return '\0';
+    auto x = source_.at(current_ + 1);
     return source_.at(current_ + 1);
 }
 
@@ -143,7 +145,7 @@ void Scanner::handleString() {
     advance();
     
     bool isNumeric = false;
-    addToken(STRING, source_.substr(start_, current_ - 1), isNumeric);
+    addToken(STRING, source_.substr(start_, current_ - start_), isNumeric);
 }
 
 bool Scanner::isDigit(char c) {   
@@ -156,7 +158,7 @@ void Scanner::identifier() {
     }
     
     // See if the identifier is a reserved word.
-    string text = source_.substr(start_, current_);
+    string text = source_.substr(start_, current_ - start_);
     
     TokenType type = keywords_.find(text) == keywords_.end() ? IDENTIFIER : keywords_.at(text);
     
@@ -193,5 +195,5 @@ void Scanner::handleNumber() {
     }
     
     bool isNumeric = true;
-    addToken(NUMBER, source_.substr(start_, current_), isNumeric);
+    addToken(NUMBER, source_.substr(start_, current_ - start_), isNumeric);
 }

@@ -36,6 +36,7 @@
 		31D3414A23FE7C8F00ACDC8D /* scanner.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scanner.cpp; sourceTree = "<group>"; };
 		31D3414B23FE7C8F00ACDC8D /* scanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scanner.h; sourceTree = "<group>"; };
 		31D3414E23FE930A00ACDC8D /* tokenType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tokenType.h; sourceTree = "<group>"; };
+		BC1D012224501E6200AFA81A /* test1.lx */ = {isa = PBXFileReference; lastKnownFileType = text; path = test1.lx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +78,7 @@
 				31D3414A23FE7C8F00ACDC8D /* scanner.cpp */,
 				31D3414B23FE7C8F00ACDC8D /* scanner.h */,
 				31D3414E23FE930A00ACDC8D /* tokenType.h */,
+				BC1D012224501E6200AFA81A /* test1.lx */,
 			);
 			path = jLox;
 			sourceTree = "<group>";

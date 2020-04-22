@@ -52,12 +52,12 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "&quot;fileTest1.txt&quot;"
-            isEnabled = "NO">
+            argument = "&quot;/Users/samollason/Documents/Personal/Develop/jLox/jLox/test1.lx&quot;"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = ""
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>

@@ -33,12 +33,6 @@ int main(int argc, const char* argv[]) {
         Lox* lox = new Lox();
         lox->runPrompt();
     }
-    
-    return 0;
-    
-    
-//    Test1* testPtr = new Test1("my-test-loxer");
-//    testPtr->Speak();
-    
+        
     return 0;
 }
